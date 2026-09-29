@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Shelter - Adoption Interest Queue</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <main class="app-container" role="main">
+        <header class="app-header">
+            <h1>Adoption Interest Queue</h1>
+            <p class="subtitle">Manage and review prospective pet adopters efficiently.</p>
+        </header>
+
+        <!-- Action Bar & Controls -->
+        <section class="controls-section" aria-label="Queue Controls">
+            <div class="search-wrapper">
+                <label for="searchInput" class="sr-only">Search adopters by name or pet</label>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search by adopter name or pet..." 
+                    aria-label="Search adopters by name or pet"
+                >
+            </div>
+            <button id="openModalBtn" class="btn btn-primary" aria-expanded="false" aria-controls="adopterModal">
+                + Add Interest Entry
+            </button>
+        </section>
+
+        <!-- Queue Display Area -->
+        <section class="queue-section" aria-label="Adoption Queue List">
+            <div id="loadingIndicator" class="loading-indicator hidden" aria-live="polite">
+                <span class="spinner" aria-hidden="true"></span>
+                <span>Processing network request...</span>
+            </div>
+            <div id="queueContainer" class="queue-container" aria-live="polite">
+                <!-- Dynamically rendered rows or empty state go here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Adding Entry -->
+    <div id="adopterModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 id="modalTitle">New Adoption Interest</h2>
+                <button id="closeModalBtn" class="btn-close" aria-label="Close modal">&times;</button>
+            </header>
+            
+            <form id="adopterForm" novalidate>
+                <div class="form-group">
+                    <label for="adopterName">Adopter Full Name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="adopterName" required aria-describedby="nameError">
+                    <span id="nameError" class="error-message hidden">Please enter a valid name.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="petName">Interested Pet Name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="petName" required aria-describedby="petError">
+                    <span id="petError" class="error-message hidden">Please specify an animal/pet name.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactEmail">Contact Email <span aria-hidden="true">*</span></label>
+                    <input type="email" id="contactEmail" required aria-describedby="emailError">
+                    <span id="emailError" class="error-message hidden">Please enter a valid email address.</span>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Entry</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
